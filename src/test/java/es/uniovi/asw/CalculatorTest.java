@@ -12,5 +12,11 @@ public void evalAdd() {
 	assertEquals(calc.add(3, 2), expected);
 }
 
+@Test
+public void evalMultiply() {
+	Calculator calc = new Calculator();
+	Integer expected = 5;
+	assertEquals(calc.multiply(3, 2), expected);
+}
 
 }
