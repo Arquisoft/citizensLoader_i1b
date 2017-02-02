@@ -1,3 +1,4 @@
+
 # citizensLoader0
 
 [![Join the chat at https://gitter.im/Arquisoft/citizensLoader_i1b](https://badges.gitter.im/Arquisoft/citizensLoader_i1b.svg)](https://gitter.im/Arquisoft/citizensLoader_i1b?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -13,3 +14,4 @@ Herminio García González (@herminiogg)
 Jose Emilio Labra Gayo (@labra)
 Ignacio Fernadez Fernandez (@scracho)
 Javier Muhlach Relea (@muhlach)
+Gabriel del Reguero García(@Tronerfull)
