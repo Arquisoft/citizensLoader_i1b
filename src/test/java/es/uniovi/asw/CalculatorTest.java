@@ -15,7 +15,7 @@ public void evalAdd() {
 @Test
 public void evalMultiply() {
 	Calculator calc = new Calculator();
-	Integer expected = 5;
+	Integer expected = 6;
 	assertEquals(calc.multiply(3, 2), expected);
 }
 
