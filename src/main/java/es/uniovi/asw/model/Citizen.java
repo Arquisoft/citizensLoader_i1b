@@ -25,13 +25,13 @@ public class Citizen {
 	@Column
 	private String nationality;
 	@Column
-	private int pollingPlace;
+	private int pollingStationCode;
 	@Column(nullable = false)
 	private String password;
 	
 	protected Citizen() {}
 
-	public Citizen(String firstName,String lastName,Date birthday, String email,String nif, String address,String nationality, int pollingPlace) {
+	public Citizen(String firstName,String lastName,Date birthday, String email,String nif, String address,String nationality, int pollingStationCode) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthday=birthday;
@@ -39,7 +39,7 @@ public class Citizen {
 		this.nif = nif;
 		this.address=address;
 		this.nationality=nationality;
-		this.pollingPlace=pollingPlace;
+		this.pollingStationCode=pollingStationCode;
 	}
 
 	public String getPassword() {
@@ -82,8 +82,8 @@ public class Citizen {
 		return nationality;
 	}
 
-	public int getPollingPlace() {
-		return pollingPlace;
+	public int getpollingStationCode() {
+		return pollingStationCode;
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class Citizen {
 		result = prime * result + ((nationality == null) ? 0 : nationality.hashCode());
 		result = prime * result + ((nif == null) ? 0 : nif.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + pollingPlace;
+		result = prime * result + pollingStationCode;
 		return result;
 	}
 
@@ -157,7 +157,7 @@ public class Citizen {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (pollingPlace != other.pollingPlace)
+		if (pollingStationCode != other.pollingStationCode)
 			return false;
 		return true;
 	}
@@ -166,7 +166,7 @@ public class Citizen {
 	public String toString() {
 		return "Citizen [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthday=" + birthday
 				+ ", email=" + email + ", nif=" + nif + ", address=" + address + ", nationality=" + nationality
-				+ ", pollingPlace=" + pollingPlace + ", password=" + password + "]";
+				+ ", pollingStationCode=" + pollingStationCode + ", password=" + password + "]";
 	}
 
 }
