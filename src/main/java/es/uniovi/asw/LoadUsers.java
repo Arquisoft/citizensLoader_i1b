@@ -1,6 +1,7 @@
 package es.uniovi.asw;
 
-import java.util.logging.Logger;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 /**
  * Main application
@@ -8,6 +9,7 @@ import java.util.logging.Logger;
  * @author Labra
  *
  */
+@SpringBootApplication
 public class LoadUsers {
 
 	public static void main(String... args) {
@@ -16,6 +18,7 @@ public class LoadUsers {
 	}
 
 	// TODO
+	@Bean
 	void run(String... args) {
 		System.out.println("TODO");
 	}
