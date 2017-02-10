@@ -8,10 +8,13 @@ import es.uniovi.asw.persistence.InsertP;
 
 public class InsertR implements Insert{
 
+	/**
+	 * Es simplemente una clase de un nivel superior
+	 * que invoca al InsertP que es el encargado de insertar los ciudadanos
+	 */
 	@Override
-	public List<Citizen> insert(List<CitizenInfo> citizenValues, String path) {
-		// TODO Auto-generated method stub
-		return new InsertP().insert(citizenValues, path);
+	public List<Citizen> insert(List<CitizenInfo> citizenValues) {
+		return new InsertP().insert(citizenValues);
 	}
 
 }
