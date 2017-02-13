@@ -14,14 +14,14 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ReadExcel implements ReadCitizens{
+public class ReadExcel extends Reader{
 
 	@Override
-	public List<CitizenInfo> readCitizens(String path) {
+	public List<CitizenInfo> read(String path) {
 		List<CitizenInfo> info = new ArrayList<CitizenInfo>();
 		
 		try {
-			FileInputStream file = new FileInputStream(new File("C:\\test.xls"));
+			FileInputStream file = new FileInputStream(new File(path));
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
 			XSSFSheet sheet = workbook.getSheetAt(0);
 
