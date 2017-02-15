@@ -15,7 +15,4 @@ public abstract class Reader implements ReadCitizens {
 	}		
 	
 	protected abstract List<CitizenInfo> read(String path);
-	
-	
-
 }

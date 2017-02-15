@@ -10,9 +10,6 @@ public class CitizenInfo {
 	private String NIF;
 	private String pollingStationCode;
 	
-	
-
-
 	public CitizenInfo(String firstName,String lastName,String birthday, String email, String NIF,String address,String nationality, String pollingStationCode) {
 		this.firstName = firstName;
 		this.lastName=lastName;
@@ -23,8 +20,6 @@ public class CitizenInfo {
 		this.nationality=nationality;
 		this.pollingStationCode = pollingStationCode;
 	}
-
-
 
 
 	public String getFirstName() {
