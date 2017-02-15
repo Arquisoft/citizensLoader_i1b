@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.Transient;
+
 @Entity
 @Table (name="Citizen")
 public class Citizen {
@@ -32,7 +34,9 @@ public class Citizen {
 	private int pollingStationCode;
 	@Column(nullable = false)
 	private String password;
-	
+	@Transient
+	private String unhashedPassword;
+
 	protected Citizen() {}
 
 	public Citizen(String firstName,String lastName,Date birthday, String email,String nif, String address,String nationality, int pollingStationCode) {
@@ -88,6 +92,14 @@ public class Citizen {
 
 	public int getpollingStationCode() {
 		return pollingStationCode;
+	}
+	
+	public String getUnhashedPassword() {
+		return unhashedPassword;
+	}
+
+	public void setUnhashedPassword(String unhashedPassword) {
+		this.unhashedPassword = unhashedPassword;
 	}
 
 	@Override

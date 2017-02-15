@@ -10,6 +10,7 @@ public class PasswordGenerator {
 
 	static final String CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	static SecureRandom random = new SecureRandom();
+	static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	/**
 	 * Generates a random password with alphanumeric characters.
@@ -31,10 +32,11 @@ public class PasswordGenerator {
 		// Generate the random password.
 		String password = randomPassword(10);
 		// Makes a bcrypt hash of the password.
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String hashedPassword = passwordEncoder.encode(password);
 		// Sets the password in the citizen object.
 		citizen.setPassword(hashedPassword);
+		// The unhashed password is needed temporarily for the letter generation
+		citizen.setUnhashedPassword(password);
 	}
 
 }
