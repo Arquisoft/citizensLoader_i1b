@@ -19,7 +19,7 @@ public class ReadExcel extends Reader{
 	@Override
 	public List<CitizenInfo> read(String path) {
 		List<CitizenInfo> info = new ArrayList<CitizenInfo>();
-		
+
 		try {
 			FileInputStream file = new FileInputStream(new File(path));
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -29,28 +29,20 @@ public class ReadExcel extends Reader{
 			Iterator<Row> rowIterator = sheet.iterator();
 			while(rowIterator.hasNext()) {
 				Row row = rowIterator.next();
-
-				//For each row, iterate through each columns
-				Iterator<Cell> cellIterator = row.cellIterator();
-				while(cellIterator.hasNext()) {
-
-					Cell cell = cellIterator.next();
-
-					switch(cell.getCellType()) {
-					case Cell.CELL_TYPE_BOOLEAN:
-						System.out.print(cell.getBooleanCellValue() + "\t\t");
-						break;
-					case Cell.CELL_TYPE_NUMERIC:
-						System.out.print(cell.getNumericCellValue() + "\t\t");
-						break;
-					case Cell.CELL_TYPE_STRING:
-						System.out.print(cell.getStringCellValue() + "\t\t");
-						break;
-					}
-				}
-				System.out.println("");
+				
+				CitizenInfo citizen = new CitizenInfo(
+						row.getCell(0).toString() , //name
+						row.getCell(1).toString(), //lastname
+						row.getCell(2).toString(), //birthday
+						row.getCell(3).toString(), //email
+						row.getCell(4).toString(), //NIF
+						row.getCell(5).toString(), //address
+						row.getCell(6).toString(), //nationality
+						row.getCell(7).toString());//pollingstationcode				
+				info.add(citizen);
 			}
-			file.close();
+			
+			file.close();		
 		}
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
