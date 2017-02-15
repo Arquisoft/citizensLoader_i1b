@@ -1,9 +1,13 @@
 package es.uniovi.asw;
 
+import org.apache.commons.cli.CommandLine;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import es.uniovi.asw.parser.Parser;
+import es.uniovi.asw.persistence.VoterRepository;
 
 /**
  * Main application
@@ -15,13 +19,15 @@ import es.uniovi.asw.parser.Parser;
 public class LoadUsers {
 
 	public static void main(String... args) {
-		final LoadUsers runner = new LoadUsers();
-		runner.run(args);
+		SpringApplication.run(LoadUsers.class, args);
 	}
 
 	// TODO
 	@Bean
-	void run(String... args) {
-		Parser.run(args);
+	public CommandLineRunner run(VoterRepository repository) {
+		return (args) -> {
+			Parser.voterRepository = repository;
+			Parser.run(args);
+		};
 	}
 }

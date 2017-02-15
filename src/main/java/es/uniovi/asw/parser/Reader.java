@@ -3,25 +3,16 @@ package es.uniovi.asw.parser;
 import java.util.List;
 
 public abstract class Reader implements ReadCitizens {
-
-	private Reader reader;
-	private String filePath;
+	
+	//template method 
 	
 	@Override
 	public List<CitizenInfo> readCitizens(String path) {
-		createReader(path);
-		return reader.read(filePath);
+		List<CitizenInfo> info = read(path);
+		///aqui se generan los reports
+		return info;
 		
-	}
-	
-	/**
-	 * selects a type of reader depending on the extension of the file (using the path)
-	 * @param path
-	 */
-	private void createReader(String path){
-		//TODO 
-		reader = new ReadExcel();
-	}
+	}		
 	
 	protected abstract List<CitizenInfo> read(String path);
 	
