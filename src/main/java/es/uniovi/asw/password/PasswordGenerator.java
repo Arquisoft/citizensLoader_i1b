@@ -6,7 +6,7 @@ public class PasswordGenerator {
 
 	public static void generatePasswords(Citizen citizen) {
 		// TODO Auto-generated method stub
-		
+		citizen.setPassword("asdasdasdasda");
 	}
 
 }
