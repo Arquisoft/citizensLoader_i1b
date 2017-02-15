@@ -30,15 +30,16 @@ public class ReadExcel extends Reader{
 			while(rowIterator.hasNext()) {
 				Row row = rowIterator.next();
 				
+				//if there is any cell missing created with null values
 				CitizenInfo citizen = new CitizenInfo(
-						row.getCell(0).toString() , //name
-						row.getCell(1).toString(), //lastname
-						row.getCell(2).toString(), //birthday
-						row.getCell(3).toString(), //email
-						row.getCell(4).toString(), //NIF
-						row.getCell(5).toString(), //address
-						row.getCell(6).toString(), //nationality
-						row.getCell(7).toString());//pollingstationcode				
+						row.getCell(0) != null ? row.getCell(0).toString() : null, //name
+						row.getCell(0) != null ? row.getCell(1).toString() : null, //lastname
+						row.getCell(0) != null ? row.getCell(2).toString() : null, //birthday
+						row.getCell(0) != null ? row.getCell(3).toString() : null, //email
+						row.getCell(0) != null ? row.getCell(4).toString() : null, //NIF
+						row.getCell(0) != null ? row.getCell(5).toString() : null, //address
+						row.getCell(0) != null ? row.getCell(6).toString() : null, //nationality
+						row.getCell(0) != null ? row.getCell(7).toString() : null);//pollingstationcode				
 				info.add(citizen);
 			}
 			
