@@ -14,7 +14,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ReadExcel extends Reader{
+public class ReadExcel extends RList{
 
 	@Override
 	public List<CitizenInfo> read(String path) {

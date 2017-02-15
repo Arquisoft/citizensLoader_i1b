@@ -2,7 +2,7 @@ package es.uniovi.asw.parser;
 
 import java.util.List;
 
-public abstract class Reader implements ReadCitizens {
+public abstract class RList implements ReadCitizens {
 	
 	//template method 
 	
