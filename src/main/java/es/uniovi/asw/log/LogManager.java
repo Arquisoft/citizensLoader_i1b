@@ -40,7 +40,7 @@ public class LogManager {
 		
 	}
 
- private void addToLog(String line)
+ public void addToLog(String line)
  {
 	 BufferedWriter writer = null;
      try {

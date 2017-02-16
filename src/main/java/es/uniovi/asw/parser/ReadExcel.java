@@ -14,11 +14,14 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import es.uniovi.asw.log.LogManager;
+
 public class ReadExcel extends RList{
 
 	@Override
 	public List<CitizenInfo> read(String path) {
 		List<CitizenInfo> info = new ArrayList<CitizenInfo>();
+		LogManager log=new LogManager();
 
 		try {
 			FileInputStream file = new FileInputStream(new File(path));
@@ -46,8 +49,10 @@ public class ReadExcel extends RList{
 			file.close();		
 		}
 		catch (FileNotFoundException e) {
+			log.addToLog("The excel table wasn't found");
 			e.printStackTrace();
 		} catch (IOException e) {
+			log.addToLog("Exception while reading the excel table");
 			e.printStackTrace();			
 		}
 		return info;
