@@ -49,10 +49,10 @@ public class InsertP implements Insert{
 			}
 
 			try {
-				Parser.voterRepository.save(citizen);
+				Parser.citizenRepository.save(citizen);
 				citizens.add(citizen);
 			} catch (DataIntegrityViolationException e) {
-				citizen = Parser.voterRepository.findByEmail(citizen.getEmail());
+				citizen = Parser.citizenRepository.findByEmail(citizen.getEmail());
 				citizens.add(citizen);
 
 			}
