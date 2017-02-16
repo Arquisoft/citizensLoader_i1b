@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.transaction.NotSupportedException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import es.uniovi.asw.persistence.Insert;
 import es.uniovi.asw.persistence.InsertP;
 import es.uniovi.asw.persistence.CitizenRepository;
@@ -13,6 +15,7 @@ public class Parser {
 	private static ReadCitizens reader;
 
 	//We pass here the inputs in the command line in order to generate different writeformats
+	@Autowired
 	public static void run(String[] args) {
 		System.out.println(args[0]);
 		String filePath = args[0];
