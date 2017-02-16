@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import es.uniovi.asw.parser.Parser;
-import es.uniovi.asw.persistence.VoterRepository;
+import es.uniovi.asw.persistence.CitizenRepository;
 
 /**
  * Main application
@@ -23,9 +23,9 @@ public class LoadUsers {
 
 	// TODO
 	@Bean
-	public CommandLineRunner run(VoterRepository repository) {
+	public CommandLineRunner run(CitizenRepository repository) {
 		return (args) -> {
-			Parser.voterRepository = repository;
+			Parser.citizenRepository = repository;
 			Parser.run(args);
 		};
 	}

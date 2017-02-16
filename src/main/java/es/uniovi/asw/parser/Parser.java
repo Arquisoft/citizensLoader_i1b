@@ -6,10 +6,10 @@ import javax.transaction.NotSupportedException;
 
 import es.uniovi.asw.persistence.Insert;
 import es.uniovi.asw.persistence.InsertP;
-import es.uniovi.asw.persistence.VoterRepository;
+import es.uniovi.asw.persistence.CitizenRepository;
 
 public class Parser {
-	public static VoterRepository voterRepository;
+	public static CitizenRepository citizenRepository;
 	private static ReadCitizens reader;
 
 	//We pass here the inputs in the command line in order to generate different writeformats
