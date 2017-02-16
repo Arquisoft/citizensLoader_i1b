@@ -35,11 +35,18 @@ public class InsertP implements Insert{
 				date= format.parse(v.getBirthday());
 			}
 			catch (ParseException e) {
-				// TODO: handle exception
+				logm.addToLog("Error while trying to apply a format to the date");
 			}			
+			
+		
 			citizen = new Citizen(v.getFirstName(),v.getLastName(),date, v.getEmail(), v.getNIF(),v.getAddress(),v.getNationality(),
 					Integer.parseInt((v.getPollingStationCode().replace(".0", ""))));
 			PasswordGenerator.generatePasswords(citizen);
+			
+			if(logm.CheckRepetitionUser(citizen, citizens))
+			{
+				//choose to add the data or not(yes->update citizen,no->log again)
+			}
 
 			try {
 				Parser.voterRepository.save(citizen);

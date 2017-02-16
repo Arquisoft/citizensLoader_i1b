@@ -64,12 +64,27 @@ public class LogManager {
      }
  }
 
-	/*public boolean CheckRepetitionUser(User user)
+ /**
+  * Checks the the citizen list for an equal to the user and puts the error if there is , in the log
+  * 
+  * @param user
+  * @param citizens
+  * @return true if there is repetition false if there is none
+  */
+	public boolean CheckRepetitionUser(Citizen user,List<Citizen> citizens)
 	{
-		int count;
+		for(Citizen citizen:citizens)
+		{
+			if(user.equals(citizen))
+			{
+				addToLog("Error :The user is already on the database :RepeatedUser:");
+				return true;
+			}
+		}
+		return false;
 		
 		
-	}*/
+	}
  
  	private void resetLogFile()
  	{
