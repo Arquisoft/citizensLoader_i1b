@@ -7,12 +7,13 @@ import javax.transaction.NotSupportedException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import es.uniovi.asw.persistence.Insert;
-import es.uniovi.asw.persistence.InsertP;
+import es.uniovi.asw.model.Citizen;
 import es.uniovi.asw.persistence.CitizenRepository;
 
 public class Parser {
 	public static CitizenRepository citizenRepository;
 	private static ReadCitizens reader;
+	private static LetterGen letterGen = new LetterGenPdf();
 
 	//We pass here the inputs in the command line in order to generate different writeformats
 	@Autowired
@@ -24,7 +25,9 @@ public class Parser {
 			//the command line executing syntax is mode path
 			List<CitizenInfo> citizenInfo = reader.readCitizens(filePath); 
 			Insert inserter = new InsertR();
-			inserter.insert(citizenInfo);
+			List<Citizen> letCit = inserter.insert(citizenInfo);
+			// Generate the letters
+			letterGen.generateLetters(letCit); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
