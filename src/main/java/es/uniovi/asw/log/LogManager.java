@@ -45,7 +45,7 @@ public class LogManager {
 	 BufferedWriter writer = null;
      try {
          //path to the file
-    	 File logFile = new File("main/files/log.txt");
+    	 File logFile = new File("logs/log.txt");
 
          // Check message
          System.out.println("Updating log file");
@@ -91,7 +91,7 @@ public class LogManager {
  	        FileWriter fw;
 			try {
 				
-			fw = new FileWriter("main/files/log.txt", false);
+			fw = new FileWriter("logs/log.txt", false);
 			
  	        PrintWriter pw = new PrintWriter(fw, false);
  	        pw.flush();
