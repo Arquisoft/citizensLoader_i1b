@@ -1,5 +1,6 @@
 package es.uniovi.asw.parser;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.transaction.NotSupportedException;
@@ -11,9 +12,13 @@ import es.uniovi.asw.model.Citizen;
 import es.uniovi.asw.persistence.CitizenRepository;
 
 public class Parser {
+	private final static String PDF_COMMAND="p";
+	private final static String TXT_COMMAND="t";
+	private final static String DOCX_COMMAND="d";
 	public static CitizenRepository citizenRepository;
 	private static ReadCitizens reader;
 	private static LetterGen letterGen = new LetterGenPdf();
+
 
 	//We pass here the inputs in the command line in order to generate different writeformats
 	@Autowired
@@ -27,12 +32,12 @@ public class Parser {
 			Insert inserter = new InsertR();
 			List<Citizen> letCit = inserter.insert(citizenInfo);
 			// Generate the letters
-			letterGen.generateLetters(letCit); 
+			generateLetter(letCit, args);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
 	}
-	
+
 	/**
 	 * selects a type of reader depending on the extension of the file (using the path)
 	 * @param path
@@ -46,9 +51,26 @@ public class Parser {
 			throw new NotSupportedException("Not supported file");
 		}
 	}
-	
-	
-	
-	
+
+	private static void generateLetter(List<Citizen> letCit, String... input) throws IOException{
+		for(String i: input){
+			switch (i){
+			case PDF_COMMAND:
+				letterGen = new LetterGenPdf();
+				letterGen.generateLetters(letCit); 
+			case TXT_COMMAND:
+				letterGen = new LetterGenTxt();
+				letterGen.generateLetters(letCit); 
+			case DOCX_COMMAND:
+				letterGen = new LetterGenDocx();
+				letterGen.generateLetters(letCit); 
+			}
+		}
+
+	}
+
+
+
+
 
 }

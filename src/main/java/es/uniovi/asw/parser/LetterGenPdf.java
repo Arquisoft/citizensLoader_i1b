@@ -33,7 +33,7 @@ public class LetterGenPdf implements LetterGen {
 		    contentStream.endText();
 		    contentStream.close();
 		    // Saving the document
-			letter.save(citizen.getEmail()+".pdf");
+			letter.save("letters/"+citizen.getEmail()+".pdf");
 			letter.close();
 		}
 	}
