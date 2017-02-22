@@ -9,8 +9,17 @@ public class LetterGenDocx implements LetterGen {
 
 	@Override
 	public void generateLetters(List<Citizen> citizens) throws IOException {
-		// TODO Auto-generated method stub
-
+		for (Citizen citizen: citizens) {			
+			XWPFDocument letter = new XWPFDocument();
+			XWPFParagraph paragraph = letter.createParagraph();
+			XWPFRun textRun = paragraph.createRun();
+			textRun.setText(citizen.getEmail());
+			textRun.addCarriageReturn();
+			textRun.setText(citizen.getUnhashedPassword());
+			textRun.setFontSize(12);
+			letter.write(new FileOutputStream(new File("letters/"+citizen.getEmail()+".docx")));
+			letter.close();
+		}
 	}
 
 }
