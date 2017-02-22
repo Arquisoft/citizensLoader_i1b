@@ -1,6 +1,12 @@
 package es.uniovi.asw;
 
-import java.util.logging.Logger;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import es.uniovi.asw.parser.Parser;
+import es.uniovi.asw.persistence.CitizenRepository;
 
 /**
  * Main application
@@ -8,15 +14,19 @@ import java.util.logging.Logger;
  * @author Labra
  *
  */
+@SpringBootApplication
 public class LoadUsers {
 
 	public static void main(String... args) {
-		final LoadUsers runner = new LoadUsers();
-		runner.run(args);
+		SpringApplication.run(LoadUsers.class, args);
 	}
 
 	// TODO
-	void run(String... args) {
-		System.out.println("TODO");
+	@Bean
+	public CommandLineRunner run(CitizenRepository repository) {
+		return (args) -> {
+			Parser.citizenRepository = repository;
+			Parser.run(args);
+		};
 	}
 }
