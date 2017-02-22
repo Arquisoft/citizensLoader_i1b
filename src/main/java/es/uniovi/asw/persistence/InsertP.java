@@ -1,13 +1,11 @@
 package es.uniovi.asw.persistence;
 
-import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -23,11 +21,8 @@ public class InsertP implements Insert{
 
 	@Override
 	public List<Citizen> insert(List<CitizenInfo> citizenValues) {
-		// TODO Auto-generated method stub
 		List<Citizen> citizens = new ArrayList<Citizen>();
-		Citizen citizen;
-		boolean adelante;
-		
+		Citizen citizen;		
 		
 		// Inserta y verifica en la base de datos
 		for (CitizenInfo info : citizenValues) {
@@ -64,35 +59,5 @@ public class InsertP implements Insert{
 		// Devuelve los votantes insertados 
 		return citizens;
 	}
-	
-//	public boolean decide(Citizen citizen,List<Citizen> citizens)
-//	{
-//		
-//		InputStream stream = System.in;
-//		Scanner scanner = new Scanner(stream);
-//		System.out.println("The citizen already exist do you want to overwrite it?(yes/no): ");
-//		String input = scanner.next();
-//		scanner.close();
-//		
-//		if(input.equalsIgnoreCase("Yes"))
-//		{
-//			//Si el citizen ya existe este es reemplazado
-//			citizen=logm.addNewData(citizen, citizens);
-//			
-//			System.out.println("The citizen was updated");
-//			return true;
-//		}
-//		else if(input.equalsIgnoreCase("no"))
-//		{
-//			
-//			System.out.println("The citizen wasn't updated" );
-//			return false;
-//		}
-//		else
-//		{
-//			System.out.println("Only yes/no");
-//			return decide(citizen, citizens);
-//		}
-//	}
 
 }
