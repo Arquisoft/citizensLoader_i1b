@@ -48,7 +48,7 @@ public class LogManager {
 	 * @param citizens
 	 * @return true if there is repetition false if there is none
 	 */
-	public boolean CheckRepetitionUser(Citizen user,List<Citizen> citizens)
+	public boolean checkRepetitionUser(Citizen user,List<Citizen> citizens)
 	{
 		//checking if there is repetition inseide the current file
 		for(Citizen citizen:citizens)
@@ -81,52 +81,13 @@ public class LogManager {
 		return repeated != null; //true if != null cause is not in the db
 	}
 
-	//	/**
-	//	 * Updates the user with the new data
-	//	 * (finds it calls it and add the data of "user").
-	//	 * @param user
-	//	 * @param citizens
-	//	 * 
-	//	 */
-	//	public Citizen addNewData(Citizen user, List<Citizen> citizens)
-	//	{
-	//		
-	//		for(Citizen citizen:citizens)
-	//		{
-	//			if(user.equals(citizen))
-	//			{
-	//				Citizen renovado=Parser.citizenRepository.findByNif(citizen.getNif());
-	//				
-	//				if(user.getAddress()!=null)
-	//				renovado.setAddress(user.getAddress());
-	//				if(user.getBirthday()!=null)
-	//				renovado.setBirthday(user.getBirthday());
-	//				if(user.getEmail()!=null)
-	//				renovado.setEmail(user.getEmail());
-	//				if(user.getNationality()!=null)
-	//				renovado.setNationality(user.getNationality());
-	//				if(user.getPassword()!=null)
-	//				renovado.setPassword(user.getPassword());
-	//				if(user.getUnhashedPassword()!=null)
-	//				renovado.setUnhashedPassword(user.getUnhashedPassword());
-	//				
-	//				Parser.citizenRepository.save(renovado);
-	//				
-	//				addToLog("Done :The user was updated with the new data");
-	//				return renovado;
-	//			}
-	//		}
-	//		return user;
-	//		
-	//	}
-
 	/**
 	 * 
 	 * checks if the data is ok (not nulls) 
 	 * @param citizen
 	 * @return true if no nulls on the attributes
 	 */
-	public boolean CheckData(CitizenInfo citizen) {
+	public boolean checkData(CitizenInfo citizen) {
 		String aux = "Citizen: "+citizen.hashCode()+" - ";
 		
 		boolean result = true;

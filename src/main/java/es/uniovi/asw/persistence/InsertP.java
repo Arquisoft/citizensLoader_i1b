@@ -42,7 +42,7 @@ public class InsertP implements Insert{
 			PasswordGenerator.generatePasswords(citizen);
 			
 			//check if contains errors and then f the citizen is already created
-			if(logm.CheckData(info) && !logm.CheckRepetitionUser(citizen, citizens))
+			if(logm.checkData(info) && !logm.checkRepetitionUser(citizen, citizens))
 			{
 				try {
 					Parser.citizenRepository.save(citizen);
