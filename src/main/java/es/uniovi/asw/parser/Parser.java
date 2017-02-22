@@ -1,5 +1,6 @@
 package es.uniovi.asw.parser;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -113,26 +114,31 @@ public class Parser {
 		}
 	}
 
-	private static void generateLetter(List<Citizen> letCit, String letterFormat) throws IOException{
-			switch (letterFormat){
-			case PDF_COMMAND:
-				letterGen = new LetterGenPdf();
-				letterGen.generateLetters(letCit);
-				break;
-			case TXT_COMMAND:
-				letterGen = new LetterGenTxt();
-				letterGen.generateLetters(letCit);
-				break;
-			case DOCX_COMMAND:
-				letterGen = new LetterGenDocx();
-				letterGen.generateLetters(letCit);
-				break;
+	/**
+	 * Generates a letter per citizen in the chosen format.
+	 * @param letCit
+	 * @param letterFormat
+	 * @throws IOException
+	 */
+	private static void generateLetter(List<Citizen> letCit, String letterFormat) throws IOException {
+		File letterDir = new File("letters");
+		if(!letterDir.exists()) {
+			letterDir.mkdir();
+		}
+		switch (letterFormat){
+		case PDF_COMMAND:
+			letterGen = new LetterGenPdf();
+			letterGen.generateLetters(letCit);
+			break;
+		case TXT_COMMAND:
+			letterGen = new LetterGenTxt();
+			letterGen.generateLetters(letCit);
+			break;
+		case DOCX_COMMAND:
+			letterGen = new LetterGenDocx();
+			letterGen.generateLetters(letCit);
+			break;
 		}
 
 	}
-
-
-
-
-
 }

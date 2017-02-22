@@ -45,9 +45,15 @@ public class LogManager {
  {
 	 BufferedWriter writer = null;
      try {
+    	 
+    	 // Create directory if it doesn't exist
+    	 File logsDir = new File("logs");
+    	 if (!logsDir.exists()) {
+    		 logsDir.mkdir();
+    	 }
          //path to the file
     	 File logFile = new File("logs/log.txt");
-
+    	 
          // Check message
          System.out.println("Updating log file");
 
