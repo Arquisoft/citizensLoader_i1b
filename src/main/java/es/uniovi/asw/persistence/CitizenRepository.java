@@ -9,6 +9,6 @@ public interface CitizenRepository extends CrudRepository<Citizen, Long> {
 
 	Citizen findByEmail(String email);
 	
-	Citizen finById(Long id);
+	Citizen findByNif(String Nif);
 	
 }

@@ -102,7 +102,7 @@ public class LogManager {
 		{
 			if(user.equals(citizen))
 			{
-				Citizen renovado=Parser.citizenRepository.finById(citizen.getId());
+				Citizen renovado=Parser.citizenRepository.findByNif(citizen.getNif());
 				
 				if(user.getAddress()!=null)
 				renovado.setAddress(user.getAddress());
@@ -117,7 +117,7 @@ public class LogManager {
 				if(user.getUnhashedPassword()!=null)
 				renovado.setUnhashedPassword(user.getUnhashedPassword());
 				
-				Parser.citizenRepository.delete(user);
+				Parser.citizenRepository.save(renovado);
 				
 				addToLog("Done :The user was updated with the new data");
 				return renovado;
