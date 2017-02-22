@@ -1,7 +1,13 @@
 package es.uniovi.asw.parser;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import es.uniovi.asw.model.Citizen;
 
