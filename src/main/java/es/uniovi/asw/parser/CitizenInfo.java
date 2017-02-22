@@ -1,7 +1,5 @@
 package es.uniovi.asw.parser;
 
-import java.util.Date;
-
 public class CitizenInfo {
 	private String firstName;
 	private String lastName;

@@ -2,8 +2,6 @@ package es.uniovi.asw.log;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import es.uniovi.asw.model.Citizen;

@@ -8,20 +8,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import es.uniovi.asw.log.LogManager;
 
 public class ReadExcel extends RList{
 
 	@Override
 	public List<CitizenInfo> read(String path) {
 		List<CitizenInfo> info = new ArrayList<CitizenInfo>();
-		LogManager log=new LogManager();
 
 		try {
 			FileInputStream file = new FileInputStream(new File(path));
@@ -45,15 +40,13 @@ public class ReadExcel extends RList{
 						row.getCell(7) != null ? row.getCell(7).toString() : null);//pollingstationcode				
 				info.add(citizen);
 			}
-			
+			workbook.close();
 			file.close();		
 		}
 		catch (FileNotFoundException e) {
-			log.addToLog("The excel table wasn't found");
-			e.printStackTrace();
+			System.out.println("The excel file was not found.");
 		} catch (IOException e) {
-			log.addToLog("Exception while reading the excel table");
-			e.printStackTrace();			
+			System.out.println("There was a problem reading the excel file.");			
 		}
 		return info;
 	}

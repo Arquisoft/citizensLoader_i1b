@@ -3,7 +3,6 @@ package es.uniovi.asw.parser;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.transaction.NotSupportedException;
 
@@ -11,6 +10,7 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,6 @@ public class Parser {
 	private final static String PDF_COMMAND="pdf";
 	private final static String TXT_COMMAND="txt";
 	private final static String DOCX_COMMAND="docx";
-	private final static String EXIT_COMMAND="exit";
 
 	public static CitizenRepository citizenRepository;
 	private static ReadCitizens reader;
@@ -34,18 +33,21 @@ public class Parser {
 	@Autowired
 	public static void run(String[] args) {
 
-		String filePath = null;
+		String[] filePath = null;
 		String letterFormat = null;
 		CommandLineParser parser = null;
 		CommandLine cmdLine = null;
 
 		// CLI program options
 		Options options = new Options();
-		options.addOption("f", true, "Input file location");
+		Option inputFileOption = new Option("f", true, "Input files location. Multiple allowed");
+		inputFileOption.setArgs(Option.UNLIMITED_VALUES);
+		options.addOption(inputFileOption);
 		options.addOption("l", true, "Letter generation format. pdf, txt, and docx.");
 		options.addOption("h", "help", false, "Display this help message.");
+		
 		// Text
-		String helpExample = "citizensLoader.jar -f <arg> -l <arg>";
+		String helpExample = "citizensLoader.jar -f excel1.xlsx -f excel2.xlsx -l pdf";
 
 		// Parsing the arguments and checking that they're valid
 		try {
@@ -61,7 +63,7 @@ public class Parser {
 
 			// Check that the file has been specified.
 			if (cmdLine.hasOption("f")) {
-				filePath = cmdLine.getOptionValue("f").trim();
+				filePath = cmdLine.getOptionValues("f");
 			}
 			else {
 				System.out.println("You must specify a file.");
@@ -81,35 +83,27 @@ public class Parser {
 			System.out.println("The parameters were incorrectly formatted.");
 			return;
 		}
-		String command;
-		do {		
+		
 			// We start executing the program.
-			System.out.println("File location: "+filePath);
-			System.out.println("Letter generation format: "+letterFormat);
-
-			try {
-				createReader(filePath);
+		System.out.println("Letter generation format: "+letterFormat);
+		try {
+			for (String sFilePath: filePath) {
+				sFilePath = sFilePath.trim();
+				System.out.println("File location: "+sFilePath);
+				createReader(sFilePath);
 				// the command line executing syntax is mode path
-				List<CitizenInfo> citizenInfo = reader.readCitizens(filePath);
+				List<CitizenInfo> citizenInfo = reader.readCitizens(sFilePath);
 				Insert inserter = new InsertR();
 				List<Citizen> letCit = inserter.insert(citizenInfo);
 				// Generate the letters
 				generateLetter(letCit, letterFormat);
-			} catch (NotSupportedException e) {
-				System.out.println(e.getMessage());
-			}
-			catch (Exception e) {		
-				e.printStackTrace();
-			}
-
-			System.out.println("Insert file path:");
-			Scanner scan = new Scanner(System.in);
-			command = scan.nextLine();
-			filePath = command;
-			System.out.println("Insert letter format:");
-			letterFormat = scan.nextLine();
+			}			
+		} catch (NotSupportedException e) {
+			System.out.println(e.getMessage());
 		}
-		while(!command.equals(EXIT_COMMAND));
+		catch (Exception e) {		
+			System.out.println("Undefined error");
+		}
 	}
 
 	/**
