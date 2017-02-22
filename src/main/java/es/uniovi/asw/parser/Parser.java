@@ -131,7 +131,7 @@ public class Parser {
 		if(!letterDir.exists()) {
 			letterDir.mkdir();
 		}
-		switch (letterFormat){
+		switch (letterFormat) {
 		case PDF_COMMAND:
 			letterGen = new LetterGenPdf();
 			letterGen.generateLetters(letCit);
@@ -143,6 +143,9 @@ public class Parser {
 		case DOCX_COMMAND:
 			letterGen = new LetterGenDocx();
 			letterGen.generateLetters(letCit);
+			break;
+		default:
+			System.out.println("The chosen letter format doesn't exist.");
 			break;
 		}
 

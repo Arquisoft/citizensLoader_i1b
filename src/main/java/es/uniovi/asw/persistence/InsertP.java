@@ -17,7 +17,7 @@ import es.uniovi.asw.password.*;
 
 public class InsertP implements Insert{
 	
-	LogManager logm=new LogManager();
+	private LogManager logm=new LogManager();
 
 	@Override
 	public List<Citizen> insert(List<CitizenInfo> citizenValues) {

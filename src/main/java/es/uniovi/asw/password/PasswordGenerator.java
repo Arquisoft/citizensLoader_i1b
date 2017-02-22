@@ -8,15 +8,15 @@ import es.uniovi.asw.model.Citizen;
 
 public class PasswordGenerator {
 
-	static final String CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	static SecureRandom random = new SecureRandom();
-	static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	private static final String CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	private static SecureRandom random = new SecureRandom();
+	private static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	/**
 	 * Generates a random password with alphanumeric characters.
 	 * @return String
 	 */
-	static String randomPassword(int sizePassword) {
+	private static String randomPassword(int sizePassword) {
 	   StringBuilder sb = new StringBuilder(sizePassword);
 	   for(int i = 0; i < sizePassword; i++) {
 		      sb.append(CHARS.charAt(random.nextInt(CHARS.length())));
