@@ -25,6 +25,8 @@ public class LetterGenDocx implements LetterGen {
 			textRun.setFontSize(12);
 			letter.write(new FileOutputStream(new File("letters/"+citizen.getEmail()+".docx")));
 			letter.close();
+			// Deleting unhashed password after letter generation
+			citizen.setUnhashedPassword("");
 		}
 	}
 

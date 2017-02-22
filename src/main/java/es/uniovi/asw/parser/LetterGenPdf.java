@@ -35,6 +35,8 @@ public class LetterGenPdf implements LetterGen {
 		    // Saving the document
 			letter.save("letters/"+citizen.getEmail()+".pdf");
 			letter.close();
+			// Deleting unhashed password after letter generation
+			citizen.setUnhashedPassword("");
 		}
 	}
 

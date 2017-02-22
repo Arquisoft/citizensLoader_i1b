@@ -16,6 +16,8 @@ public class LetterGenTxt implements LetterGen {
 				writer.println(citizen.getEmail());
 				writer.println(citizen.getUnhashedPassword());
 				writer.close();
+				// Deleting unhashed password after letter generation
+				citizen.setUnhashedPassword("");
 			}
 		}
 
