@@ -1,5 +1,7 @@
 package es.uniovi.asw.parser;
 
+import java.util.Date;
+
 public class CitizenInfo {
 	private String firstName;
 	private String lastName;
@@ -90,6 +92,11 @@ public class CitizenInfo {
 		return "CitizenInfo [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", birthday="
 				+ birthday + ", address=" + address + ", nationality=" + nationality + ", NIF=" + NIF
 				+ ", pollingStationCode=" + pollingStationCode + "]";
+	}
+
+
+	public void setBirthday(String object) {
+		birthday = object;
 	}
 	
 	

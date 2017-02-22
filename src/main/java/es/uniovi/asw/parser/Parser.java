@@ -22,6 +22,7 @@ public class Parser {
 	private final static String PDF_COMMAND="pdf";
 	private final static String TXT_COMMAND="txt";
 	private final static String DOCX_COMMAND="docx";
+	private final static String EXIT_COMMAND="exit";
 	
 	public static CitizenRepository citizenRepository;
 	private static ReadCitizens reader;

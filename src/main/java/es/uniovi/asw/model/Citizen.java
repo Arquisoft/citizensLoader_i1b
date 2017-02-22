@@ -109,7 +109,7 @@ public class Citizen {
 	public int getpollingStationCode() {
 		return pollingStationCode;
 	}
-	
+
 	public String getUnhashedPassword() {
 		return unhashedPassword;
 	}
@@ -117,6 +117,9 @@ public class Citizen {
 	public void setUnhashedPassword(String unhashedPassword) {
 		this.unhashedPassword = unhashedPassword;
 	}
+
+
+
 
 	@Override
 	public int hashCode() {
@@ -128,8 +131,6 @@ public class Citizen {
 		return result;
 	}
 
-	
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -139,6 +140,21 @@ public class Citizen {
 		if (getClass() != obj.getClass())
 			return false;
 		Citizen other = (Citizen) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (birthday == null) {
+			if (other.birthday != null)
+				return false;
+		} else if (!birthday.equals(other.birthday))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
@@ -149,10 +165,17 @@ public class Citizen {
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
+		if (nationality == null) {
+			if (other.nationality != null)
+				return false;
+		} else if (!nationality.equals(other.nationality))
+			return false;
 		if (nif == null) {
 			if (other.nif != null)
 				return false;
 		} else if (!nif.equals(other.nif))
+			return false;
+		if (pollingStationCode != other.pollingStationCode)
 			return false;
 		return true;
 	}

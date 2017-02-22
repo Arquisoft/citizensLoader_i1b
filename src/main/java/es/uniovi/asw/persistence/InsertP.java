@@ -30,36 +30,25 @@ public class InsertP implements Insert{
 		
 		
 		// Inserta y verifica en la base de datos
-		for (CitizenInfo v : citizenValues) {
+		for (CitizenInfo info : citizenValues) {
 			//se procesa y transforma la fecha
 			Date date= new Date();
 			try{
 				DateFormat format= new SimpleDateFormat("dd/MM/yyyy");
-				date= format.parse(v.getBirthday());
+				date= format.parse(info.getBirthday());
 			}
 			catch (ParseException e) {
-				logm.addToLog("Error while trying to apply a format to the date");
-			}			
+				date = null;
+				info.setBirthday(null);			}			
 			
 		
-			citizen = new Citizen(v.getFirstName(),v.getLastName(),date, v.getEmail(), v.getNIF(),v.getAddress(),v.getNationality(),
-					Integer.parseInt((v.getPollingStationCode().replace(".0", ""))));
+			citizen = new Citizen(info.getFirstName(),info.getLastName(),date, info.getEmail(), info.getNIF(),info.getAddress(),info.getNationality(),
+					Integer.parseInt((info.getPollingStationCode().replace(".0", ""))));
 			PasswordGenerator.generatePasswords(citizen);
 			
-			if(logm.CheckRepetitionUser(citizen, citizens))
+			//check if contains errors and then f the citizen is already created
+			if(logm.CheckData(info) && !logm.CheckRepetitionUser(citizen, citizens))
 			{
-				//choose to add the data or not(yes->update citizen,no->log again)
-				
-			adelante=decide(citizen,citizens);
-			
-			}
-			else
-			{
-				adelante=true;
-			}
-
-			if(adelante)
-			{	
 				try {
 					Parser.citizenRepository.save(citizen);
 					citizens.add(citizen);
@@ -69,8 +58,6 @@ public class InsertP implements Insert{
 				}
 			}
 		}
-		
-		citizens=logm.CheckRepetition(citizens);
 
 		System.out.println("Se han registrado " + citizens.size());
 
@@ -78,36 +65,34 @@ public class InsertP implements Insert{
 		return citizens;
 	}
 	
-	public boolean decide(Citizen citizen,List<Citizen> citizens)
-	{
-		
-		InputStream stream = System.in;
-		Scanner scanner = new Scanner(stream);
-		System.out.println("The citizen already exist do you want to overwrite it?(yes/no): ");
-		String input = scanner.next();
-		scanner.close();
-		
-		if(input.equalsIgnoreCase("Yes"))
-		{
-			//Si el citizen ya existe este es reemplazado
-			citizen=logm.addNewData(citizen, citizens);
-			
-			System.out.println("The citizen was updated");
-			return true;
-		}
-		else if(input.equalsIgnoreCase("no"))
-		{
-			
-			System.out.println("The citizen wasn't updated" );
-			return false;
-		}
-		else
-		{
-			System.out.println("Only yes/no");
-			return decide(citizen, citizens);
-		}
-	}
-
-
+//	public boolean decide(Citizen citizen,List<Citizen> citizens)
+//	{
+//		
+//		InputStream stream = System.in;
+//		Scanner scanner = new Scanner(stream);
+//		System.out.println("The citizen already exist do you want to overwrite it?(yes/no): ");
+//		String input = scanner.next();
+//		scanner.close();
+//		
+//		if(input.equalsIgnoreCase("Yes"))
+//		{
+//			//Si el citizen ya existe este es reemplazado
+//			citizen=logm.addNewData(citizen, citizens);
+//			
+//			System.out.println("The citizen was updated");
+//			return true;
+//		}
+//		else if(input.equalsIgnoreCase("no"))
+//		{
+//			
+//			System.out.println("The citizen wasn't updated" );
+//			return false;
+//		}
+//		else
+//		{
+//			System.out.println("Only yes/no");
+//			return decide(citizen, citizens);
+//		}
+//	}
 
 }
