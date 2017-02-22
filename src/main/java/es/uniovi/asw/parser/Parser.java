@@ -3,6 +3,7 @@ package es.uniovi.asw.parser;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.transaction.NotSupportedException;
 
@@ -23,7 +24,7 @@ public class Parser {
 	private final static String TXT_COMMAND="txt";
 	private final static String DOCX_COMMAND="docx";
 	private final static String EXIT_COMMAND="exit";
-	
+
 	public static CitizenRepository citizenRepository;
 	private static ReadCitizens reader;
 	private static LetterGen letterGen;
@@ -32,12 +33,12 @@ public class Parser {
 	//We pass here the inputs in the command line in order to generate different writeformats
 	@Autowired
 	public static void run(String[] args) {
-		
+
 		String filePath = null;
 		String letterFormat = null;
 		CommandLineParser parser = null;
 		CommandLine cmdLine = null;
-		
+
 		// CLI program options
 		Options options = new Options();
 		options.addOption("f", true, "Input file location");
@@ -51,13 +52,13 @@ public class Parser {
 			parser = new DefaultParser();
 			cmdLine = parser.parse(options, args);
 			HelpFormatter formatter = new HelpFormatter();
-			
+
 			// If there is the help flag then show the help and return.
 			if (cmdLine.hasOption("h")) {
 				formatter.printHelp(helpExample, options);
 				return;
 			}
-			
+
 			// Check that the file has been specified.
 			if (cmdLine.hasOption("f")) {
 				filePath = cmdLine.getOptionValue("f").trim();
@@ -80,25 +81,35 @@ public class Parser {
 			System.out.println("The parameters were incorrectly formatted.");
 			return;
 		}
-		
-		// We start executing the program.
-		System.out.println("File location: "+filePath);
-		System.out.println("Letter generation format: "+letterFormat);
-		
-		try {
-			createReader(filePath);
-			// the command line executing syntax is mode path
-			List<CitizenInfo> citizenInfo = reader.readCitizens(filePath);
-			Insert inserter = new InsertR();
-			List<Citizen> letCit = inserter.insert(citizenInfo);
-			// Generate the letters
-			generateLetter(letCit, letterFormat);
-		} catch (NotSupportedException e) {
-			System.out.println(e.getMessage());
+		String command;
+		do {		
+			// We start executing the program.
+			System.out.println("File location: "+filePath);
+			System.out.println("Letter generation format: "+letterFormat);
+
+			try {
+				createReader(filePath);
+				// the command line executing syntax is mode path
+				List<CitizenInfo> citizenInfo = reader.readCitizens(filePath);
+				Insert inserter = new InsertR();
+				List<Citizen> letCit = inserter.insert(citizenInfo);
+				// Generate the letters
+				generateLetter(letCit, letterFormat);
+			} catch (NotSupportedException e) {
+				System.out.println(e.getMessage());
+			}
+			catch (Exception e) {		
+				e.printStackTrace();
+			}
+
+			System.out.println("Insert file path:");
+			Scanner scan = new Scanner(System.in);
+			command = scan.nextLine();
+			filePath = command;
+			System.out.println("Insert letter format:");
+			letterFormat = scan.nextLine();
 		}
-		catch (Exception e) {		
-			e.printStackTrace();
-		}
+		while(!command.equals(EXIT_COMMAND));
 	}
 
 	/**

@@ -25,8 +25,6 @@ public class LetterGenPdf implements LetterGen {
 			contentStream.setFont(PDType1Font.TIMES_ROMAN, 12);
 			contentStream.setLeading(14f);
 		    contentStream.newLineAtOffset(25, 720);
-		    contentStream.showText("Your user has been created.");
-		    contentStream.newLine();
 		    contentStream.showText(citizen.getEmail());
 		    contentStream.newLine();
 		    contentStream.showText(citizen.getUnhashedPassword());

@@ -12,7 +12,6 @@ public class LetterGenTxt implements LetterGen {
 	public void generateLetters(List<Citizen> citizens) throws IOException {
 		for (Citizen citizen: citizens) {
 				PrintWriter writer = new PrintWriter("letters/"+citizen.getEmail()+".txt", "UTF-8");
-				writer.println("Your user has been created.");
 				writer.println(citizen.getEmail());
 				writer.println(citizen.getUnhashedPassword());
 				writer.close();
