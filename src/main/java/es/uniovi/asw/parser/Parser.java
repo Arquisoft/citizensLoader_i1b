@@ -12,9 +12,9 @@ import es.uniovi.asw.model.Citizen;
 import es.uniovi.asw.persistence.CitizenRepository;
 
 public class Parser {
-	private final static String PDF_COMMAND="p";
-	private final static String TXT_COMMAND="t";
-	private final static String DOCX_COMMAND="d";
+	private final static String PDF_COMMAND="pdf";
+	private final static String TXT_COMMAND="txt";
+	private final static String DOCX_COMMAND="docx";
 	public static CitizenRepository citizenRepository;
 	private static ReadCitizens reader;
 	private static LetterGen letterGen = new LetterGenPdf();
