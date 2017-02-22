@@ -1,11 +1,13 @@
 package es.uniovi.asw.persistence;
 
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -24,8 +26,9 @@ public class InsertP implements Insert{
 		// TODO Auto-generated method stub
 		List<Citizen> citizens = new ArrayList<Citizen>();
 		Citizen citizen;
+		boolean adelante;
 		
-		citizens=logm.CheckRepetition(citizens);
+		
 		// Inserta y verifica en la base de datos
 		for (CitizenInfo v : citizenValues) {
 			//se procesa y transforma la fecha
@@ -46,22 +49,63 @@ public class InsertP implements Insert{
 			if(logm.CheckRepetitionUser(citizen, citizens))
 			{
 				//choose to add the data or not(yes->update citizen,no->log again)
+				
+			adelante=decide(citizen,citizens);
+			
+			}
+			else
+			{
+				adelante=true;
 			}
 
-			try {
-				Parser.citizenRepository.save(citizen);
-				citizens.add(citizen);
-			} catch (DataIntegrityViolationException e) {
-				citizen = Parser.citizenRepository.findByEmail(citizen.getEmail());
-				citizens.add(citizen);
-
+			if(adelante)
+			{	
+				try {
+					Parser.citizenRepository.save(citizen);
+					citizens.add(citizen);
+				} catch (DataIntegrityViolationException e) {
+					citizen = Parser.citizenRepository.findByEmail(citizen.getEmail());
+					citizens.add(citizen);
+				}
 			}
 		}
+		
+		citizens=logm.CheckRepetition(citizens);
 
 		System.out.println("Se han registrado " + citizens.size());
 
 		// Devuelve los votantes insertados 
 		return citizens;
+	}
+	
+	public boolean decide(Citizen citizen,List<Citizen> citizens)
+	{
+		
+		InputStream stream = System.in;
+		Scanner scanner = new Scanner(stream);
+		System.out.println("The citizen already exist do you want to overwrite it?(yes/no): ");
+		String input = scanner.next();
+		scanner.close();
+		
+		if(input.equalsIgnoreCase("Yes"))
+		{
+			//Si el citizen ya existe este es reemplazado
+			citizen=logm.addNewData(citizen, citizens);
+			
+			System.out.println("The citizen was updated");
+			return true;
+		}
+		else if(input.equalsIgnoreCase("no"))
+		{
+			
+			System.out.println("The citizen wasn't updated" );
+			return false;
+		}
+		else
+		{
+			System.out.println("Only yes/no");
+			return decide(citizen, citizens);
+		}
 	}
 
 

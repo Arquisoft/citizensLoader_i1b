@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import es.uniovi.asw.model.Citizen;
+import es.uniovi.asw.parser.Parser;
 
 public class LogManager {
 	
@@ -78,6 +79,7 @@ public class LogManager {
 			if(user.equals(citizen))
 			{
 				addToLog("Error :The user is already on the database :RepeatedUser:");
+				
 				return true;
 			}
 		}
@@ -85,6 +87,47 @@ public class LogManager {
 		
 		
 	}
+	
+	/**
+	 * Updates the user with the new data
+	 * (finds it calls it and add the data of "user").
+	 * @param user
+	 * @param citizens
+	 * 
+	 */
+	public Citizen addNewData(Citizen user, List<Citizen> citizens)
+	{
+		
+		for(Citizen citizen:citizens)
+		{
+			if(user.equals(citizen))
+			{
+				Citizen renovado=Parser.citizenRepository.finById(citizen.getId());
+				
+				if(user.getAddress()!=null)
+				renovado.setAddress(user.getAddress());
+				if(user.getBirthday()!=null)
+				renovado.setBirthday(user.getBirthday());
+				if(user.getEmail()!=null)
+				renovado.setEmail(user.getEmail());
+				if(user.getNationality()!=null)
+				renovado.setNationality(user.getNationality());
+				if(user.getPassword()!=null)
+				renovado.setPassword(user.getPassword());
+				if(user.getUnhashedPassword()!=null)
+				renovado.setUnhashedPassword(user.getUnhashedPassword());
+				
+				Parser.citizenRepository.delete(user);
+				
+				addToLog("Done :The user was updated with the new data");
+				return renovado;
+			}
+		}
+		return user;
+		
+	}
+	
+	
  
  	private void resetLogFile()
  	{
@@ -110,5 +153,7 @@ public class LogManager {
 		addToLog(line);
 		
 	}
+
+	
 
 }
