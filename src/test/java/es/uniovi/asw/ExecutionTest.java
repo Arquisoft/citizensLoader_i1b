@@ -12,7 +12,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import cucumber.api.java.After;
 import es.uniovi.asw.LoadUsers;
 import es.uniovi.asw.model.Citizen;
 import es.uniovi.asw.parser.CitizenInfo;
@@ -22,8 +21,8 @@ import es.uniovi.asw.persistence.Insert;
 
 public class ExecutionTest {
 	
-	List<CitizenInfo> citizensInfo;
-	Insert inserter; 
+	private List<CitizenInfo> citizensInfo;
+	private Insert inserter; 
 
 	@Before
 	public void init() throws Exception
@@ -50,9 +49,6 @@ public class ExecutionTest {
 		
 		Citizen gabriel = new Citizen("Gabriel","Reguero",createDate("31/12/1995"), "emailGabriel@test.com","55433455B", "dd","dd", 2);
 		Citizen nacho = new Citizen("Nacho", "Fernandez", createDate("08/01/1995"), "emailNacho@test.com", "71729768J", "mi casa", "española", 47);
-		Citizen fail = new Citizen("fail", "fail", new Date(), "fail", "fail", "fail", null, 59);
-		Citizen repeated = new Citizen("Nacho", "Fernandez", createDate("08/01/1995"), "emailNacho@test.com", "71729768J", "mi casa", "española", 47);
-		
 		
 		CitizenInfo citizenGabriel = new CitizenInfo("Gabriel","Reguero","31/12/1995", "emailGabriel@test.com","55433455B", "dd","dd", "2");
 		CitizenInfo citizenNacho = new CitizenInfo("Nacho", "Fernandez", "08/01/1995", "emailNacho@test.com", "71729768J", "mi casa", "española", "47");
@@ -74,10 +70,5 @@ public class ExecutionTest {
 		assertEquals(gabriel, Parser.citizenRepository.findByEmail("emailGabriel@test.com"));
 	}
 	
-	@After
-	public void finish() throws Exception
-	{
-		
-	}
 
 }

@@ -33,7 +33,7 @@ public class LetterGenTest {
 
 
 	@Test
-	public void LetterGenPdfTest() {
+	public void letterGenPdfTest() {
 		LetterGen letterGen = new LetterGenPdf();
 		try {
 			letterGen.generateLetters(citizenList);
@@ -48,7 +48,7 @@ public class LetterGenTest {
 	}
 	
 	@Test
-	public void LetterGenTxtTest() {
+	public void letterGenTxtTest() {
 		LetterGen letterGen = new LetterGenTxt();
 		try {
 			letterGen.generateLetters(citizenList);
@@ -59,7 +59,7 @@ public class LetterGenTest {
 	}
 	
 	@Test
-	public void LetterGenDocxTest() {
+	public void letterGenDocxTest() {
 		LetterGen letterGen = new LetterGenDocx();
 		try {
 			letterGen.generateLetters(citizenList);
