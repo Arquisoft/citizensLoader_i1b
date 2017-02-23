@@ -72,10 +72,10 @@ public class LogManager {
 
 		Citizen repeated = null;
 
-		repeated = Parser.citizenRepository.findByEmail(user.getNif());
+		repeated = Parser.citizenRepository.findByEmail(user.getEmail());
 		if (repeated == null)
 		{
-			repeated = Parser.citizenRepository.findByNif(user.getEmail());
+			repeated = Parser.citizenRepository.findByNif(user.getNif());
 		}
 
 		return repeated != null; //true if != null cause is not in the db
