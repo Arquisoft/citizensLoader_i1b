@@ -12,7 +12,6 @@ import es.uniovi.asw.password.PasswordGenerator;
 public class testPassword {
 
 	
-	private PasswordGenerator passw;
 
 	private Citizen citizen;
 	@Before
@@ -21,13 +20,12 @@ public class testPassword {
 		
 		citizen = new Citizen("Gabriel","García",new Date(), "email@test.com","55433455B", "cc","cc", 1);
 		citizen.setUnhashedPassword("test");
-		passw= new PasswordGenerator();
 		
 	}
 	@Test
 	public void testGeneratedPassword() {
 		
-		passw.generatePasswords(citizen);
+		PasswordGenerator.generatePasswords(citizen);
 		assertEquals(citizen.getUnhashedPassword().length(),10);
 		
 	}
