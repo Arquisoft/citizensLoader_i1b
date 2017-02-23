@@ -20,7 +20,7 @@ import es.uniovi.asw.parser.InsertR;
 import es.uniovi.asw.parser.Parser;
 import es.uniovi.asw.persistence.Insert;
 
-public class TestExecution {
+public class ExecutionTest {
 	
 	List<CitizenInfo> citizensInfo;
 	Insert inserter; 

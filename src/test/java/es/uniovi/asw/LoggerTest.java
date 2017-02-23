@@ -14,7 +14,7 @@ import es.uniovi.asw.log.LogManager;
 import es.uniovi.asw.model.Citizen;
 import es.uniovi.asw.parser.CitizenInfo;
 
-public class TestLogger {
+public class LoggerTest {
 	
 	private LogManager logm ;
 	
