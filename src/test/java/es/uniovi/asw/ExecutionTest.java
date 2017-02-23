@@ -29,7 +29,7 @@ public class ExecutionTest {
 	{
 		citizensInfo = new ArrayList<CitizenInfo>();
 		inserter = new InsertR();
-		LoadUsers.main("-f src/main/resources/ejemplo.xlsx", "-f src/main/resources/ejemplo.xlsx", "-l pdf");
+		LoadUsers.main("-f src/main/resources/ejemplo.xlsx", "-f src/main/resources/ejemplo.xlsx", "-l docx", "-l txt");
 	}
 	
 	private Date createDate(String dateStr)

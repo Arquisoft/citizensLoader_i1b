@@ -58,21 +58,21 @@ public class Citizen {
 		this.password = password;
 	}
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
+//	public void setBirthday(Date birthday) {
+//		this.birthday = birthday;
+//	}
+//
+//	public void setEmail(String email) {
+//		this.email = email;
+//	}
+//
+//	public void setAddress(String address) {
+//		this.address = address;
+//	}
+//
+//	public void setNationality(String nationality) {
+//		this.nationality = nationality;
+//	}
 
 	public Long getId() {
 		return id;
