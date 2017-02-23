@@ -30,15 +30,15 @@ public class testLogger {
 		logm=new LogManager();
 	}
 
-	@Test
-	public void CheckDBtest() 
+//	@Test
+	/*public void CheckDBtest() 
 	{
 		Citizen citizen = new Citizen("Gabriell","Reguero",new Date(), "email@test.com","55433455B", "dd","dd", 2);
 		citizen.setUnhashedPassword("test2");
 	
 		assertEquals(true,logm.checkRepetitionUser(citizen, citizens));
 		
-	}
+	}*/
 	
 	@Test
 	public void RepeatedDatatest() 
