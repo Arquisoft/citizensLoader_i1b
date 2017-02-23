@@ -15,7 +15,9 @@ import org.junit.Test;
 
 import es.uniovi.asw.model.Citizen;
 import es.uniovi.asw.parser.LetterGen;
+import es.uniovi.asw.parser.LetterGenDocx;
 import es.uniovi.asw.parser.LetterGenPdf;
+import es.uniovi.asw.parser.LetterGenTxt;
 
 public class LetterGenTest {
 	private List<Citizen> citizenList;
@@ -47,10 +49,25 @@ public class LetterGenTest {
 	
 	@Test
 	public void LetterGenTxtTest() {
+		LetterGen letterGen = new LetterGenTxt();
+		try {
+			letterGen.generateLetters(citizenList);
+			assertEquals("todo","todo");
+			// TODO
+		} catch (IOException e) {
+		}
 	}
 	
 	@Test
 	public void LetterGenDocxTest() {
+		LetterGen letterGen = new LetterGenDocx();
+		try {
+			letterGen.generateLetters(citizenList);
+			assertEquals("todo","todo");
+			// TODO
+		} catch (IOException e) {
+		}
+		
 	}
 
 }

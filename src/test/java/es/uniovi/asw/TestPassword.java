@@ -1,4 +1,4 @@
-package es.uniovi.asw.test;
+package es.uniovi.asw;
 
 
 import static org.junit.Assert.*;
@@ -12,7 +12,7 @@ import org.junit.Test;
 import es.uniovi.asw.model.Citizen;
 import es.uniovi.asw.password.PasswordGenerator;
 
-public class testPassword {
+public class TestPassword {
 
 	
 

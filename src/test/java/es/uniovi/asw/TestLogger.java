@@ -1,4 +1,4 @@
-package es.uniovi.asw.test;
+package es.uniovi.asw;
 
 
 import static org.junit.Assert.assertEquals;
@@ -14,7 +14,7 @@ import es.uniovi.asw.log.LogManager;
 import es.uniovi.asw.model.Citizen;
 import es.uniovi.asw.parser.CitizenInfo;
 
-public class testLogger {
+public class TestLogger {
 	
 	private LogManager logm ;
 	
@@ -32,17 +32,17 @@ public class testLogger {
 	}
 
 //	@Test
-	/*public void CheckDBtest() 
-	{
-		Citizen citizen = new Citizen("Gabriell","Reguero",new Date(), "email@test.com","55433455B", "dd","dd", 2);
-		citizen.setUnhashedPassword("test2");
-	
-		assertEquals(true,logm.checkRepetitionUser(citizen, citizens));
-		
-	}*/
+//	public void CheckDBtest() 
+//	{
+//		Citizen citizen = new Citizen("Gabriell","Reguero",new Date(), "email@test.com","55433455B", "dd","dd", 2);
+//		citizen.setUnhashedPassword("test2");
+//	
+//		assertEquals(true,logm.checkRepetitionUser(citizen, citizens));
+//		
+//	}
 	
 	@Test
-	public void RepeatedDatatest() 
+	public void repeatedDatatest() 
 	{
 		Citizen citizen = new Citizen("Gabriel","García",new Date(), "email@test.com","55433455B", "cc","cc", 1);
 		citizen.setUnhashedPassword("test");
@@ -52,7 +52,7 @@ public class testLogger {
 	}
 
 	@Test
-	public void MissingNametest() 
+	public void missingNametest() 
 	{
 		CitizenInfo citizen = new CitizenInfo(null,"García",new Date().toString(), "email@test.com","55433455B", "cc","cc", Integer.toString(1));
 		
@@ -61,7 +61,7 @@ public class testLogger {
 	}
 	
 	@Test
-	public void MissingSurNametest() 
+	public void missingSurNametest() 
 	{
 		CitizenInfo citizen = new CitizenInfo("Gabriel",null,new Date().toString(), "email@test.com","55433455B", "cc","cc", Integer.toString(1));
 		assertEquals(true,!logm.checkData(citizen));
@@ -69,7 +69,7 @@ public class testLogger {
 	}
 	
 	@Test
-	public void MissingDatetest() 
+	public void missingDatetest() 
 	{
 		CitizenInfo citizen = new CitizenInfo("Gabriel","García",null, "email@test.com","55433455B", "cc","cc", Integer.toString(1));
 		assertEquals(true,!logm.checkData(citizen));
@@ -77,7 +77,7 @@ public class testLogger {
 	}
 	
 	@Test
-	public void MissingEmailtest() 
+	public void missingEmailtest() 
 	{
 		CitizenInfo citizen = new CitizenInfo("Gabriel","García",new Date().toString(), null,"55433455B", "cc","cc", Integer.toString(1));
 		
@@ -86,7 +86,7 @@ public class testLogger {
 	}
 	
 	@Test
-	public void MissingNIFtest() 
+	public void missingNIFtest() 
 	{
 		CitizenInfo citizen = new CitizenInfo("Gabriel","García",new Date().toString(), "email@test.com",null, "cc","cc", Integer.toString(1));
 		
@@ -95,7 +95,7 @@ public class testLogger {
 	}
 	
 	@Test
-	public void MissingAddresstest() 
+	public void missingAddresstest() 
 	{
 		CitizenInfo citizen = new CitizenInfo("Gabriel","García",new Date().toString(), "email@test.com","55433455B", null,"cc", Integer.toString(1));
 		
@@ -104,7 +104,7 @@ public class testLogger {
 	}
 	
 	@Test
-	public void MissingNationalitytest() 
+	public void missingNationalitytest() 
 	{
 		CitizenInfo citizen = new CitizenInfo("Gabriel","García",new Date().toString(), "email@test.com","55433455B", "cc",null, Integer.toString(1));
 		
@@ -113,7 +113,7 @@ public class testLogger {
 	}
 	
 	@Test
-	public void MissingStationCodetest() 
+	public void missingStationCodetest() 
 	{
 		CitizenInfo citizen = new CitizenInfo("Gabriel","García",new Date().toString(), "email@test.com","55433455B", "cc","cc", null);
 		
