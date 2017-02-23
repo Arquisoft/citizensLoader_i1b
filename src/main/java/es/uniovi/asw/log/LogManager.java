@@ -110,6 +110,7 @@ public class LogManager {
 		}	
 		if(citizen.getAddress() == null){
 			addToLog(":Corrupted Data: "+aux+"unexisting address");
+			result = false;
 		}
 		if(citizen.getNationality() == null){
 			addToLog(":Corrupted Data: "+aux+"unexisting nationality");
