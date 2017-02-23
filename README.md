@@ -12,7 +12,7 @@ Citizens Loader is a CLI application that processes citizen data files, for exam
 ## How to run
 As Citizens Loaders is a CLI application it works with flags and arguments. An example in which 3 files are processed and the letters are generated using the pdf format:
 ```
-mvn spring-boot:run -Drun.arguments="-f input/ejemplo.xlsx,-f input/ejemplo2.xlsx,-f input/ejemplo3.xlsx,-l pdf"
+mvn spring-boot:run -Drun.arguments="-f src/main/resources/ejemplo.xlsx,-f src/main/resources/ejemplo2.xlsx,-l pdf"
 ```
 ## Building Citizens Loader
 Provided you have Maven and Git you just have to:
