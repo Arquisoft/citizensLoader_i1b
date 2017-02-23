@@ -12,7 +12,7 @@ import org.junit.Test;
 import es.uniovi.asw.model.Citizen;
 import es.uniovi.asw.password.PasswordGenerator;
 
-public class TestPassword {
+public class PasswordTest {
 
 	
 
